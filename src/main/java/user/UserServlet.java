@@ -37,10 +37,13 @@ public class UserServlet extends HttpServlet
         String name = req.getParameter("username");
         try
         {
-            dao.add(name);
-            session.setAttribute("username", name);
-            resp.sendRedirect("./todos.jsp");
-
+            if(name == null || name.equals("") || name.equals(" ")) resp.sendRedirect("./register.jsp");
+            else
+            {
+                dao.add(name);
+                session.setAttribute("username", name);
+                resp.sendRedirect("./todos.jsp");
+            }
         } catch (UserAlreadyExistException e)
         {
             req.setAttribute("message", e.getMessage());
@@ -60,8 +63,14 @@ public class UserServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-         HttpSession session = req.getSession();
-         session.setAttribute("username", req.getParameter("name"));
-         resp.sendRedirect("./todos.jsp");
+        if(!dao.find(req.getParameter("name")))
+        {
+            resp.sendRedirect("./register.jsp");
+        }else
+        {
+            HttpSession session = req.getSession();
+            session.setAttribute("username", req.getParameter("name"));
+            resp.sendRedirect("./todos.jsp");
+        }
     }
 }

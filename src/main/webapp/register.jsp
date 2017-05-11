@@ -19,7 +19,7 @@
     <h2>Registration:</h2>
     <div>
         <form action="./register"method="post">
-            <input name="username" type="text" required, placeholder="Your username" maxlength="32">
+            <input name="username" type="text" required placeholder="Your username" maxlength="32">
             <input type="submit">
         </form>
     </div>
