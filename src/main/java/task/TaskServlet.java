@@ -29,15 +29,12 @@ public class TaskServlet extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String userName = (String) req.getSession().getAttribute("username");
-        System.out.println(userName);
         String operation = req.getParameter("type");
-        System.out.println(operation);
         String ID;
         switch (operation)
         {
             case "add" :
                 String text = req.getParameter("taskText");
-                System.out.println(text);
                 try
                 {   if (text == null || text.equals("") || text.equals(" "))break;
                     taskManager.add(text, userName);
@@ -48,8 +45,6 @@ public class TaskServlet extends HttpServlet
                 break;
             case "state":
                 ID = req.getParameter("ID");
-                System.out.println(ID);
-                System.out.println(req.getParameter("newstate"));
                 taskManager.setState(ID, req.getParameter("newstate"), userName);
                 break;
 

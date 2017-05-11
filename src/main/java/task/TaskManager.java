@@ -29,7 +29,6 @@ public class TaskManager
 
     public List<Task> get(String type, String userName) throws Exception
     {
-        System.out.println("Type parameter:\t" + type);
         switch (type)
         {
             case "backlog":

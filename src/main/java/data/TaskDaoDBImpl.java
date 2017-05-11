@@ -39,9 +39,7 @@ public class TaskDaoDBImpl implements TaskDao
             query = "SELECT * FROM Todos WHERE Owner = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, userName);
-            System.out.println("Statement for get:\t" + stmt.toString());
             ResultSet rs = stmt.executeQuery();
-            System.out.println("Result set after getting:\t" + rs.toString());
             return createResultList(rs);
         } catch (SQLException e)
         {
@@ -70,7 +68,6 @@ public class TaskDaoDBImpl implements TaskDao
                 state = States.valueOf(rs.getString("State"));
                 temp = new Task(text, owner);
                 temp.setState(state);
-                System.out.println(temp.toString());
             }
             return temp;
         }catch (Exception e)
@@ -90,7 +87,6 @@ public class TaskDaoDBImpl implements TaskDao
         stmt.setString(2, task.getText());
         stmt.setString(3, task.getState().toString());
         stmt.setString(4, task.getUserName());
-        System.out.println(stmt.toString());
         stmt.execute();
         return true;
         }
@@ -186,7 +182,6 @@ public class TaskDaoDBImpl implements TaskDao
             temp.setID(ID);
             results.add(temp);
         }
-        System.out.println("Results for creating list out of set:\t" + results.toString());
         return results;
     }
 
@@ -195,14 +190,11 @@ public class TaskDaoDBImpl implements TaskDao
     {
         try
         {
-            System.out.println("bentvagyunk a setstétben");
             query = "UPDATE Todos SET State = ? WHERE TodoID = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, state);
             stmt.setString(2, ID);
-            System.out.println("Update exec update with querry: " + stmt.toString());
             stmt.executeUpdate();
-            System.out.println("Megérkeztünk Gyöngyöspatára!");
         }catch (SQLException e)
         {
             System.out.println("ELBASZODOTT EZ A GECI A KURVA ANYJAT MEGBASZOM");
