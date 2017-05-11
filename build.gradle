@@ -13,8 +13,11 @@ dependencies {
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'org.webjars:jquery:3.2.0'
     compile 'ch.vorburger.mariaDB4j:mariaDB4j:2.2.3'
+    compile group: 'com.fasterxml', name: 'jackson-module-json-org', version: '0.9.1'
     runtime 'org.slf4j:slf4j-simple:1.7.25'
     runtime 'mysql:mysql-connector-java:6.0.6'
+    // https://mvnrepository.com/artifact/com.fasterxml/jackson-module-json-org
+
 }
 
 gretty {
